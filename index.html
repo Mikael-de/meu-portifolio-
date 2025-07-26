@@ -7,7 +7,7 @@
     <link rel="icon" href="1.png" type="image/png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Variáveis de cores */
+        /* Variáveis de cores - Tema Claro (padrão) */
         :root {
             --primary: #1a73e8;
             --primary-dark: #0d47a1;
@@ -21,6 +21,31 @@
             --whatsapp: #25D366;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --bg-color: #ffffff;
+            --text-color: #212529;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --section-bg: #ffffff;
+            --card-bg: #f8f9fa;
+            --hero-bg: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            --education-bg: linear-gradient(to bottom, #f0f8ff, #e6f7ff);
+        }
+
+        /* Variáveis de cores - Tema Escuro */
+        [data-theme="dark"] {
+            --primary: #296581;
+            --primary-dark: #044191;
+            --light: #121212;
+            --dark: #242424;
+            --gray: #9e9e9e;
+            --light-gray: #000000;
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --header-bg: rgba(18, 18, 18, 0.95);
+            --section-bg: #1e1e1e;
+            --card-bg: #000000;
+            --hero-bg: linear-gradient(135deg, #0a1e2e 0%, #082032 100%);
+            --education-bg: linear-gradient(to bottom, #0a1a2a, #0d1b2e);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
 
         /* Reset e estilos base */
@@ -33,9 +58,10 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--light);
+            color: var(--text-color);
+            background-color: var(--bg-color);
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -47,15 +73,19 @@
 
         section {
             padding: 80px 0;
+            background-color: var(--section-bg);
+            transition: background-color 0.3s ease;
         }
 
         h1, h2, h3, h4 {
             margin-bottom: 1rem;
             font-weight: 700;
+            color: var(--dark);
         }
 
         p {
             margin-bottom: 1rem;
+            color: var(--text-color);
         }
 
         a {
@@ -129,7 +159,7 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: var(--header-bg);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 15px 0;
             transition: var(--transition);
@@ -194,10 +224,35 @@
             color: var(--dark);
         }
 
+        /* Botão de Tema */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--dark);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
         /* Hero Section */
         .hero {
             padding: 160px 0 100px;
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            background: var(--hero-bg);
             position: relative;
             overflow: hidden;
         }
@@ -211,14 +266,12 @@
 
         .hero-text {
             flex: 1;
-            animation: fadeInUp 1s ease;
         }
 
         .hero-image {
             flex: 1;
             display: flex;
             justify-content: center;
-            animation: fadeIn 1.5s ease;
         }
 
         .profile-image {
@@ -227,7 +280,7 @@
             border-radius: 50%;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             position: relative;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -299,7 +352,7 @@
 
         /* About Section */
         .about {
-            background-color: white;
+            background-color: var(--section-bg);
         }
 
         .about-content {
@@ -323,7 +376,7 @@
         }
 
         .skill-card {
-            background: var(--light);
+            background: var(--card-bg);
             padding: 20px;
             border-radius: 10px;
             box-shadow: var(--shadow);
@@ -344,7 +397,7 @@
 
         /* Education Section */
         .education {
-            background: linear-gradient(to bottom, #f0f8ff, #e6f7ff);
+            background: var(--education-bg);
         }
 
         .education-container {
@@ -353,7 +406,7 @@
         }
 
         .education-item {
-            background: white;
+            background: var(--section-bg);
             padding: 30px;
             border-radius: 10px;
             box-shadow: var(--shadow);
@@ -382,15 +435,86 @@
             color: var(--primary);
         }
 
+        .course-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .highlight-card {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: var(--shadow);
+        }
+
+        .highlight-card i {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .course-structure {
+            margin-top: 25px;
+        }
+
+        .module {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .module h4 {
+            color: var(--primary-dark);
+        }
+
+        /* Acordeão para descrição da escola */
+        .accordion {
+            background-color: transparent;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 10px 0;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-weight: 500;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .accordion:hover {
+            color: var(--primary-dark);
+        }
+
+        .accordion .accordion-icon {
+            transition: transform 0.4s ease;
+        }
+
+        .accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
         /* Contact Section */
         .contact {
-            background-color: white;
+            background-color: var(--section-bg);
         }
 
         .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            display: flex;
+            justify-content: center;
         }
 
         .contact-info {
@@ -399,6 +523,8 @@
             padding: 40px;
             border-radius: 10px;
             box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 800px;
         }
 
         .contact-info h3 {
@@ -429,6 +555,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            justify-content: center;
         }
 
         .contact-social a {
@@ -458,49 +585,10 @@
             background: rgba(37, 211, 102, 0.3);
         }
 
-        .contact-form {
-            background: var(--light);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--light-gray);
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
         /* Footer */
         footer {
             background: var(--dark);
-            color: white;
+            color: rgb(17, 15, 15);
             padding: 40px 0 20px;
             text-align: center;
         }
@@ -537,40 +625,12 @@
         }
 
         .copyright {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(0, 0, 0, 0.5);
             font-size: 0.9rem;
             margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             width: 100%;
-        }
-
-        /* Animações */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.appear {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         /* Botão flutuante do WhatsApp */
@@ -585,7 +645,7 @@
             border-radius: 50px;
             text-align: center;
             font-size: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
             z-index: 100;
             display: flex;
             align-items: center;
@@ -617,10 +677,6 @@
                 flex-direction: column;
             }
             
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-            
             .whatsapp-float {
                 bottom: 20px;
                 right: 20px;
@@ -638,7 +694,7 @@
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 70px);
-                background: white;
+                background: var(--section-bg);
                 flex-direction: column;
                 align-items: center;
                 padding-top: 50px;
@@ -666,6 +722,17 @@
                 width: 250px;
                 height: 250px;
             }
+            
+            .contact-social {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .theme-toggle {
+                position: absolute;
+                top: 15px;
+                right: 60px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -690,6 +757,20 @@
             .hero {
                 padding: 140px 0 80px;
             }
+            
+            .contact-method {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-method i {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .highlight-card {
+                min-width: 100%;
+            }
         }
     </style>
 </head>
@@ -709,6 +790,9 @@
                     <li><a href="#contact">Contato</a></li>
                 </ul>
             </nav>
+            <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </header>
 
@@ -721,7 +805,7 @@
                     <p class="subtitle">Estudante de Técnico em Enfermagem</p>
                     <div class="location">
                         <i class="fas fa-map-marker-alt"></i>
-                        <a href="https://maps.app.goo.gl/eXzN14kXgk1Z3kqF7" target="_blank" c>Tubarão, Santa Catarina </a>
+                        <a href="https://maps.app.goo.gl/eXzN14kXgk1Z3kqF7" target="_blank">Tubarão, Santa Catarina</a>
                     </div>
                     <p>Futuro profissional da saúde comprometido com o cuidado humano e o bem-estar dos pacientes. Buscando constantemente aprimorar meus conhecimentos e habilidades na área da enfermagem.</p>
                     
@@ -750,15 +834,15 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title fade-in">Sobre Mim</h2>
+            <h2 class="section-title">Sobre Mim</h2>
             <div class="about-content">
-                <div class="about-text fade-in">
+                <div class="about-text">
                     <p>Olá! Sou Mikael Klein, estudante de Técnico em Enfermagem apaixonado pela área da saúde. Minha jornada na enfermagem começou com a vontade de fazer a diferença na vida das pessoas, proporcionando cuidado e conforto em momentos de necessidade.</p>
                     <p>Atualmente, estou focado em adquirir conhecimento teórico e prático para me tornar um profissional qualificado e ético, capaz de atuar em diversos contextos da saúde com excelência e humanização.</p>
                     <p>Minha abordagem combina competência técnica com empatia e atenção ao ser humano como um todo, entendendo que cada paciente possui necessidades únicas que exigem um cuidado personalizado.</p>
                 </div>
                 
-                <div class="about-skills fade-in">
+                <div class="about-skills">
                     <h3>Habilidades em Desenvolvimento</h3>
                     <div class="skills-container">
                         <div class="skill-card">
@@ -793,34 +877,106 @@
     <!-- Education Section -->
     <section id="education" class="education">
         <div class="container">
-            <h2 class="section-title fade-in">Formação Acadêmica</h2>
+            <h2 class="section-title">Formação Acadêmica</h2>
             <div class="education-container">
-                <div class="education-item fade-in">
+                <div class="education-item">
                     <h3>Técnico em Enfermagem</h3>
-                    <p>Faculdade Senac - Tubarão </p>
+                    <p>Faculdade Senac - Tubarão</p>
                     <p><i class="far fa-calendar-alt"></i> 2025 - 2027 (Cursando)</p>
-                    <p>Formação técnica com foco em práticas de enfermagem, atendimento ao paciente, procedimentos técnicos e ética profissional.</p>
+                    <p><strong>Carga Horária Total:</strong> 1600 horas</p>
+                    
+                    <div class="course-highlights">
+                        <div class="highlight-card">
+                            <i class="fas fa-hospital"></i>
+                            <h4>Estágios Práticos</h4>
+                            <p>Experiência prática em hospitais e clínicas da rede</p>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fas fa-flask"></i>
+                            <h4>Laboratórios Modernos</h4>
+                            <p>Infraestrutura de ponta para aprendizado</p>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <h4>Professores Qualificados</h4>
+                            <p>Corpo docente experiente e reconhecido</p>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fas fa-laptop"></i>
+                            <h4>Ensino Híbrido</h4>
+                            <p>Combinação de aulas presenciais e remotas</p>
+                        </div>
+                    </div>
+                    
+                    <button class="accordion">
+                        Ver grade curricular completa
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="panel">
+                        <div class="course-structure">
+                            <div class="module">
+                                <h4>Módulo I: Fundamentos de Enfermagem (300 horas)</h4>
+                                <ul>
+                                    <li>Anatomia e Fisiologia Humana - 80h</li>
+                                    <li>Microbiologia e Parasitologia - 60h</li>
+                                    <li>Fundamentos de Enfermagem - 100h</li>
+                                    <li>Ética e Legislação em Enfermagem - 60h</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="module">
+                                <h4>Módulo II: Assistência ao Paciente (450 horas)</h4>
+                                <ul>
+                                    <li>Enfermagem em Clínica Médica - 120h</li>
+                                    <li>Enfermagem em Saúde Coletiva - 100h</li>
+                                    <li>Enfermagem em Saúde Mental - 80h</li>
+                                    <li>Administração de Medicamentos - 100h</li>
+                                    <li>Procedimentos Técnicos - 50h</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="module">
+                                <h4>Módulo III: Especialidades (400 horas)</h4>
+                                <ul>
+                                    <li>Enfermagem em Urgência e Emergência - 120h</li>
+                                    <li>Enfermagem em Centro Cirúrgico - 100h</li>
+                                    <li>Enfermagem em Pediatria - 90h</li>
+                                    <li>Enfermagem em Geriatria - 90h</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="module">
+                                <h4>Módulo IV: Práticas Profissionais (450 horas)</h4>
+                                <ul>
+                                    <li>Estágio Supervisionado em Clínica Médica - 150h</li>
+                                    <li>Estágio Supervisionado em Urgência/Emergência - 150h</li>
+                                    <li>Estágio Supervisionado em Saúde Coletiva - 100h</li>
+                                    <li>Trabalho de Conclusão de Curso - 50h</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="education-item fade-in">
-                    <h3>Ensino Médio </h3>
+                <div class="education-item">
+                    <h3>Ensino Médio</h3>
                     <p>Escola de Educação Básica Herique Fontes - Cívico Militar</p>
-                    <p><i class="far fa-calendar-alt"></i> 2024-2026 (Cursando) </p>
-                    <p>Na EEB Henrique Fontes, vivenciei uma formação integral que combina excelência acadêmica com princípios cívicos e disciplinares. <br>O modelo cívico-militar da escola proporcionou:
-
-Base Curricular Sólida: Domínio das disciplinas regulares (Língua Portuguesa, Matemática, Ciências, História, Geografia e Língua Estrangeira), com ênfase em pensamento crítico e resolução de problemas.<br>
-
-Valores Cívicos e Patrióticos: Desenvolvimento de noções de civismo, ética, respeito à hierarquia e valorização dos símbolos nacionais, por meio de atividades práticas e cerimônias cívicas.<br>
-
-Disciplina e Organização: Aplicação de rotinas estruturadas (como uso de uniforme, ordem unida e normas de conduta) para promover responsabilidade, pontualidade e trabalho em equipe.<br>
-
-Competências Socioemocionais: Fortalecimento de liderança, resiliência e autogestão, essenciais para desafios acadêmicos e pessoais.<br>
-
-Projetos Interdisciplinares: Participação em iniciativas que integram conhecimentos teóricos à realidade prática, estimulando criatividade e responsabilidade social.<br>
-
-Essa experiência não apenas consolidou minha base de conhecimentos, mas também moldou meu caráter, preparando-me para atuar com integridade, organização e comprometimento em todos os âmbitos da vida.<br>
-
-</p>
+                    <p><i class="far fa-calendar-alt"></i> 2024-2026 (Cursando)</p>
+                    
+                    <!-- Acordeão para descrição da escola -->
+                    <button class="accordion">
+                        Ver detalhes da formação cívico-militar
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="panel">
+                        <p>Na EEB Henrique Fontes, vivenciei uma formação integral que combina excelência acadêmica com princípios cívicos e disciplinares. O modelo cívico-militar da escola proporcionou:</p>
+                        <p><strong>Base Curricular Sólida:</strong> Domínio das disciplinas regulares (Língua Portuguesa, Matemática, Ciências, História, Geografia e Língua Estrangeira), com ênfase em pensamento crítico e resolução de problemas.</p>
+                        <p><strong>Valores Cívicos e Patrióticos:</strong> Desenvolvimento de noções de civismo, ética, respeito à hierarquia e valorização dos símbolos nacionais, por meio de atividades práticas e cerimônias cívicas.</p>
+                        <p><strong>Disciplina e Organização:</strong> Aplicação de rotinas estruturadas (como uso de uniforme, ordem unida e normas de conduta) para promover responsabilidade, pontualidade e trabalho em equipe.</p>
+                        <p><strong>Competências Socioemocionais:</strong> Fortalecimento de liderança, resiliência e autogestão, essenciais para desafios acadêmicos e pessoais.</p>
+                        <p><strong>Projetos Interdisciplinares:</strong> Participação em iniciativas que integram conhecimentos teóricos à realidade prática, estimulando criatividade e responsabilidade social.</p>
+                        <p>Essa experiência não apenas consolidou minha base de conhecimentos, mas também moldou meu caráter, preparando-me para atuar com integridade, organização e comprometimento em todos os âmbitos da vida.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -829,9 +985,9 @@ Essa experiência não apenas consolidou minha base de conhecimentos, mas també
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title fade-in">Contato</h2>
+            <h2 class="section-title">Contato</h2>
             <div class="contact-container">
-                <div class="contact-info fade-in">
+                <div class="contact-info">
                     <h3>Vamos conversar!</h3>
                     <p>Estou disponível para oportunidades de estágio e início de carreira na área da enfermagem.</p>
                     
@@ -839,7 +995,7 @@ Essa experiência não apenas consolidou minha base de conhecimentos, mas també
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4>Email</h4>
-                            <p><a href=mailto:Mikael.k@outlook.com.br subject="link HTML" style="color: #ffffffea">Mikael.k@outlook.com.br</a></p>
+                            <p><a href="mailto:Mikael.k@outlook.com.br" style="color: #ffffffea">Mikael.k@outlook.com.br</a></p>
                         </div>
                     </div>
                     
@@ -870,33 +1026,6 @@ Essa experiência não apenas consolidou minha base de conhecimentos, mas també
                             <i class="fab fa-whatsapp"></i> WhatsApp
                         </a>
                     </div>
-                </div>
-                
-                <div class="contact-form fade-in">
-                    <h3>Envie uma mensagem</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nome</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Assunto</label>
-                            <input type="text" id="subject" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Mensagem</label>
-                            <textarea id="message" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">Enviar Mensagem</button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -994,44 +1123,6 @@ Essa experiência não apenas consolidou minha base de conhecimentos, mas també
             });
         });
         
-        // Animação de scroll
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const appearOnScroll = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('appear');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        fadeElements.forEach(element => {
-            appearOnScroll.observe(element);
-        });
-        
-        // Formulário de contato
-        const contactForm = document.getElementById('contactForm');
-        
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Validação simples
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-                
-                if (name && email && subject && message) {
-                    // Aqui você pode adicionar o código para enviar o formulário
-                    alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
-                    contactForm.reset();
-                } else {
-                    alert('Por favor, preencha todos os campos.');
-                }
-            });
-        }
-        
         // Ativar link ativo no menu conforme scroll
         const sections = document.querySelectorAll('section');
         
@@ -1053,6 +1144,60 @@ Essa experiência não apenas consolidou minha base de conhecimentos, mas també
                     link.classList.add('active');
                 }
             });
+        });
+        
+        // Acordeão para descrição da escola
+        document.querySelectorAll('.accordion').forEach(button => {
+            button.addEventListener('click', () => {
+                button.classList.toggle('active');
+                const panel = button.nextElementSibling;
+                
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // Tema escuro/claro
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Verificar preferência do sistema ou armazenamento local
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+            body.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        // Alternar tema
+        themeToggle.addEventListener('click', () => {
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            
+            if (isDark) {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+        
+        // Observar mudanças na preferência do sistema
+        prefersDarkScheme.addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                if (e.matches) {
+                    body.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    body.removeAttribute('data-theme');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                }
+            }
         });
     </script>
 </body>
