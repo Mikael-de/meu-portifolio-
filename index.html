@@ -7,45 +7,48 @@
     <link rel="icon" href="1.png" type="image/png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Variáveis de cores - Tema Claro (padrão) */
+        /* Variáveis de cores - Tema Claro (padrão) - Paleta suave e profissional */
         :root {
-            --primary: #1a73e8;
-            --primary-dark: #0d47a1;
-            --secondary: #4fc3f7;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
-            --success: #28a745;
-            --danger: #dc3545;
+            --primary: #3a7bd5; /* Azul suave */
+            --primary-dark: #2c5fb3;
+            --secondary: #4facfe; /* Azul mais claro */
+            --light: #f8fafc; /* Branco muito suave */
+            --dark: #2d3748; /* Cinza escuro */
+            --gray: #718096; /* Cinza médio */
+            --light-gray: #e2e8f0; /* Cinza claro */
+            --success: #38a169; /* Verde */
+            --danger: #e53e3e; /* Vermelho */
             --whatsapp: #25D366;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             --transition: all 0.3s ease;
             --bg-color: #ffffff;
-            --text-color: #212529;
-            --header-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #2d3748;
+            --header-bg: rgba(255, 255, 255, 0.97);
             --section-bg: #ffffff;
-            --card-bg: #f8f9fa;
-            --hero-bg: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            --education-bg: linear-gradient(to bottom, #f0f8ff, #e6f7ff);
+            --card-bg: #f8fafc;
+            --hero-bg: linear-gradient(135deg, #e3f2fd 0%, #d1e7ff 100%);
+            --education-bg: linear-gradient(to bottom, #f7fafc, #ebf4ff);
+            --accent: #4fd1c5; /* Turquesa para destaques */
         }
 
-        /* Variáveis de cores - Tema Escuro */
+        /* Variáveis de cores - Tema Escuro - Paleta escura elegante */
         [data-theme="dark"] {
-            --primary: #296581;
-            --primary-dark: #044191;
-            --light: #121212;
-            --dark: #242424;
-            --gray: #9e9e9e;
-            --light-gray: #000000;
-            --bg-color: #121212;
-            --text-color: #e0e0e0;
-            --header-bg: rgba(18, 18, 18, 0.95);
-            --section-bg: #1e1e1e;
-            --card-bg: #000000;
-            --hero-bg: linear-gradient(135deg, #0a1e2e 0%, #082032 100%);
-            --education-bg: linear-gradient(to bottom, #0a1a2a, #0d1b2e);
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --primary: #4facfe; /* Azul claro */
+            --primary-dark: #3a7bd5;
+            --secondary: #63b3ed;
+            --light: #1a202c; /* Fundo escuro */
+            --dark: #000000; /* Texto claro */
+            --gray: #a0aec0;
+            --light-gray: #2d3748;
+            --bg-color: #1a202c;
+            --text-color: #e2e8f0;
+            --header-bg: rgba(26, 32, 44, 0.97);
+            --section-bg: #2d3748;
+            --card-bg: #2d3748;
+            --hero-bg: linear-gradient(135deg, #1a365d 0%, #153e75 100%);
+            --education-bg: linear-gradient(to bottom, #2d3748, #1a365d);
+            --accent: #4fd1c5;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         /* Reset e estilos base */
@@ -148,7 +151,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: var(--primary);
+            background: var(--accent);
             border-radius: 2px;
         }
 
@@ -163,6 +166,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 15px 0;
             transition: var(--transition);
+            backdrop-filter: blur(5px);
         }
 
         header.scrolled {
@@ -208,7 +212,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: var(--accent);
             transition: var(--transition);
         }
 
@@ -222,6 +226,11 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary);
         }
 
         /* Botão de Tema */
@@ -242,7 +251,8 @@
         }
 
         .theme-toggle:hover {
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.05);
+            transform: rotate(15deg);
         }
 
         [data-theme="dark"] .theme-toggle:hover {
@@ -278,13 +288,19 @@
             width: 300px;
             height: 300px;
             border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            background: linear-gradient(45deg, var(--primary), var(--accent));
             position: relative;
             box-shadow: var(--shadow);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .profile-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
         .profile-image:before {
@@ -377,11 +393,12 @@
 
         .skill-card {
             background: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
+            padding: 25px;
+            border-radius: 12px;
             box-shadow: var(--shadow);
             transition: var(--transition);
             height: 100%;
+            border-left: 4px solid var(--accent);
         }
 
         .skill-card:hover {
@@ -391,7 +408,7 @@
 
         .skill-card i {
             font-size: 2rem;
-            color: var(--primary);
+            color: var(--accent);
             margin-bottom: 15px;
         }
 
@@ -408,7 +425,7 @@
         .education-item {
             background: var(--section-bg);
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 12px;
             box-shadow: var(--shadow);
             margin-bottom: 30px;
             position: relative;
@@ -427,7 +444,7 @@
             left: 0;
             height: 100%;
             width: 4px;
-            background: var(--primary);
+            background: var(--accent);
             border-radius: 0 10px 10px 0;
         }
 
@@ -444,15 +461,20 @@
 
         .highlight-card {
             background: var(--card-bg);
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
             flex: 1;
             min-width: 200px;
             box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-3px);
         }
 
         .highlight-card i {
-            color: var(--primary);
+            color: var(--accent);
             font-size: 1.5rem;
             margin-bottom: 10px;
         }
@@ -487,10 +509,11 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 10px;
+            transition: var(--transition);
         }
 
         .accordion:hover {
-            color: var(--primary-dark);
+            color: var(--accent);
         }
 
         .accordion .accordion-icon {
@@ -521,7 +544,7 @@
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             padding: 40px;
-            border-radius: 10px;
+            border-radius: 12px;
             box-shadow: var(--shadow);
             width: 100%;
             max-width: 800px;
@@ -588,7 +611,7 @@
         /* Footer */
         footer {
             background: var(--dark);
-            color: rgb(17, 15, 15);
+            color: white;
             padding: 40px 0 20px;
             text-align: center;
         }
@@ -607,7 +630,7 @@
         }
 
         .footer-logo span {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .footer-links {
@@ -618,14 +641,15 @@
 
         .footer-links a {
             color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
         }
 
         .footer-links a:hover {
-            color: white;
+            color: var(--accent);
         }
 
         .copyright {
-            color: rgba(0, 0, 0, 0.5);
+            color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
             margin-top: 20px;
             padding-top: 20px;
@@ -645,7 +669,7 @@
             border-radius: 50px;
             text-align: center;
             font-size: 30px;
-            box-shadow: var(--shadow);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             z-index: 100;
             display: flex;
             align-items: center;
@@ -655,7 +679,12 @@
 
         .whatsapp-float:hover {
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Efeitos de hover e transições */
+        a, button, .btn, .skill-card, .education-item, .highlight-card {
+            transition: var(--transition);
         }
 
         /* Responsividade */
@@ -680,6 +709,9 @@
             .whatsapp-float {
                 bottom: 20px;
                 right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
             }
         }
 
